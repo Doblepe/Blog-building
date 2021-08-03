@@ -1,20 +1,13 @@
 import {useState} from 'react'
-interface User {
-    name: string,
-    age: number,
-    addres: {
-        street: string,
-        number: number
-    },
-    admin: boolean
-}
+import { User } from './interfaces'; // We export interfaces to use them in further components
+
 export default function App(){
 
-    const [user, setUser] = useState<User | null>(null)
+    const [user, setUser] = useState<User | null>(null) // As default, useState gives the useState value, but if we want to change it we need to change it with the correct type
     const fetchUser = () => setUser({
         name: "Juan",
         age: 22,
-        addres: {
+        address: {
             street: "mainStreet",
             number: 5
         },
@@ -23,7 +16,7 @@ export default function App(){
     return (
       <>
         <button onClick={fetchUser}>Mostrar</button>
-        {user && <p>{`welcome ${user?.name}`}</p>};
+        {user && <p>{`welcome ${user?.name}`}</p>}
         </>)
     }   
 
