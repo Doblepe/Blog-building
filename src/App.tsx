@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {useState} from 'react'
+interface User {
+    name: string,
+    age: number,
+    addres: {
+        street: string,
+        number: number
+    },
+    admin: boolean
 }
+export default function App(){
 
-export default App;
+    const [user, setUser] = useState<User | null>(null)
+    const fetchUser = () => setUser({
+        name: "Juan",
+        age: 22,
+        addres: {
+            street: "mainStreet",
+            number: 5
+        },
+        admin: false
+    });
+    return (
+      <>
+        <button onClick={fetchUser}>Mostrar</button>
+        {user && <p>{`welcome ${user?.name}`}</p>};
+        </>)
+    }   
+
