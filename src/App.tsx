@@ -1,22 +1,23 @@
-import {useState} from 'react'
-import { User } from './interfaces'; // We export interfaces to use them in further components
-
+import HeaderComp from "./components/HeaderComp";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import Posts from "./components/PostComp";
+import Contact from "./components/ContactComp";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import FooterComp from "./components/FooterComp";
 export default function App(){
-
-    const [user, setUser] = useState<User | null>(null) // As default, useState gives the useState value, but if we want to change it we need to change it with the correct type
-    const fetchUser = () => setUser({
-        name: "Juan",
-        age: 22,
-        address: {
-            street: "mainStreet",
-            number: 5
-        },
-        admin: false
-    });
-    return (
-      <>
-        <button onClick={fetchUser}>Mostrar</button>
-        {user && <p>{`welcome ${user?.name}`}</p>}
-        </>)
+return(<>
+<Router>
+<HeaderComp/>
+<Route path="/posts">
+    <Posts/>
+</Route>
+<Route exact path="/contact">
+    <Contact/>
+</Route>
+<FooterComp/>
+</Router>
+</>)
     }   
+
 
